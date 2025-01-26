@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { tsParticles, type Container } from "@tsparticles/engine";
+import configs from "@tsparticles/configs";
+import { prependListener } from 'process';
 
 const roles = ['IT-Administrator!', 'Hobby-Programmierer!', 'IT-Spezialist!'];
 const currentRole = ref('');
@@ -11,11 +14,55 @@ onMounted(() => {
     roleIndex = (roleIndex + 1) % roles.length;
   }, 2000); // Wechsel alle 2 Sekunden
 });
+
+const options = {
+  autoPlay: true,
+  background: { color: { value: "#161616" }, opacity: 1 },
+      particles: {
+        links: {
+          enable: true,
+          distance: 100,
+          opacity: 0.5,
+        },
+        number: {
+          density: {
+            enable: true,
+            value_area: 800,
+          },
+          value: 55,
+        },
+        size: {
+          value: 3,
+        },
+        move: {
+          direction: 'none',
+          enable: true,
+          outMode: 'bounce',
+          random: false,
+          speed: 2,
+          straight: false,
+        },
+        opacity: {
+          value: 0.5,
+        },
+      },
+      retina_detect: true,
+    };
+
+const particlesLoaded = async (container: Container) => {
+  console.log(container);
+};
+
 </script>
 
 <template>
-  <div class="app-container">
-    <!-- Vertikale Navigationsleiste -->
+      <vue-particles
+      id="tsparticles"
+      :options="options"
+      @particles-loaded="particlesLoaded"
+    />
+  <div class="app-container"> 
+    
     <div class="social-bar">
       <p class="follow-text">FOLLOW ME</p>
       <div class="line"></div>
@@ -28,7 +75,6 @@ onMounted(() => {
       </ul>
     </div>
 
-    <!-- Zentrierter Hauptinhalt -->
     <div class="text-container">
       <Image src="1701422943734.png" width="150"></Image>
       <h1>Cihan Karakas</h1>
@@ -58,8 +104,8 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2c3e50;
-  background-image: url('/sunset-trees-silhouette-landscape-scenery-4k-wallpaper-uhdpaper.com-549@2@a.jpg');
+ /* background-color: #2c3e50;
+ /* background-image: url('/sunset-trees-silhouette-landscape-scenery-4k-wallpaper-uhdpaper.com-549@2@a.jpg'); */
   background-size: cover;
   background-position: center;
   margin: 0;
