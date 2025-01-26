@@ -1,3 +1,5 @@
+<!--
+
 <script setup>
 import { loadFull } from "tsparticles";
 
@@ -106,3 +108,15 @@ const particlesLoaded = async (container) => {
   color: #888;
 }
 </style>
+
+-->
+
+<template>
+  <div>
+    <!-- Hier kann der Inhalt deiner Komponente sein -->
+  </div>
+</template>
+
+<script setup>
+// Optionale Logik
+</script>

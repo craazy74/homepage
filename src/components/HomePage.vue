@@ -1,90 +1,57 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { tsParticles, loadFull } from "@tsparticles/engine"; // Korrekte Importierung
+import { ref, onMounted } from 'vue';
 
-const roles = ["IT-Administrator!", "Hobby-Programmierer!", "IT-Spezialist!"];
-const currentRole = ref("");
+const roles = ['IT-Administrator!', 'Hobby-Programmierer!', 'IT-Spezialist!'];
+const currentRole = ref('');
 let roleIndex = 0;
 
-onMounted(async () => {
-  console.log("onMounted called");
-
-  // Lade die vollständige tsParticles-Engine
-  await loadFull(tsParticles);
-
-  console.log("tsParticles loaded successfully");
-
-  // Lade Partikel-Einstellungen
-  tsParticles.load("tsparticles", {
-    background: {
-      color: { value: "#2c3e50" },
-    },
-    particles: {
-      number: {
-        value: 50,
-      },
-      size: {
-        value: { min: 1, max: 5 },
-      },
-      move: {
-        enable: true,
-        speed: 2,
-      },
-    },
-  });
-
-  // Wechsle die Rolle alle 2 Sekunden
+onMounted(() => {
   setInterval(() => {
     currentRole.value = roles[roleIndex];
     roleIndex = (roleIndex + 1) % roles.length;
-  }, 2000);
+  }, 2000); // Wechsel alle 2 Sekunden
 });
 </script>
 
 <template>
-  <div id="tsparticles"></div>
-
   <div class="app-container">
+    <!-- Vertikale Navigationsleiste -->
     <div class="social-bar">
       <p class="follow-text">FOLLOW ME</p>
       <div class="line"></div>
       <ul class="social-icons">
-        <li><a href="#" target="_blank" aria-label="Twitch"><i class="pi pi-twitch"></i></a></li>
-        <li><a href="#" target="_blank" aria-label="Instagram"><i class="pi pi-instagram"></i></a></li>
-        <li><a href="#" target="_blank" aria-label="LinkedIn"><i class="pi pi-linkedin"></i></a></li>
-        <li><a href="#" target="_blank" aria-label="Discord"><i class="pi pi-discord"></i></a></li>
-        <li><a href="#" target="_blank" aria-label="GitHub"><i class="pi pi-github"></i></a></li>
+        <li><a href="#" target="_blank"><i class="pi pi-twitch"></i></a></li>
+        <li><a href="#" target="_blank"><i class="pi pi-instagram"></i></a></li>
+        <li><a href="#" target="_blank"><i class="pi pi-linkedin"></i></a></li>
+        <li><a href="#" target="_blank"><i class="pi pi-discord"></i></a></li>
+        <li><a href="#" target="_blank"><i class="pi pi-github"></i></a></li>
       </ul>
     </div>
 
+    <!-- Zentrierter Hauptinhalt -->
     <div class="text-container">
-      <img src="https://via.placeholder.com/150" width="150" alt="Profile Image" />
+      <Image src="1701422943734.png" width="150"></Image>
       <h1>Cihan Karakas</h1>
       <h2>Ich bin ein <span class="animated-text">{{ currentRole }}</span></h2>
     </div>
   </div>
 </template>
 
+
 <style>
-#tsparticles {
-  position: absolute;
-  width: 100%;
+/* Entferne schwarze Balken durch Reset-Styling */
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html, body {
   height: 100%;
-  z-index: -1;
+  overflow: hidden; /* Verhindert Scrollbars */
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
+/* Vollbild-Container */
 .app-container {
   height: 100vh;
   width: 100vw;
@@ -92,11 +59,15 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #2c3e50;
+  background-image: url('/sunset-trees-silhouette-landscape-scenery-4k-wallpaper-uhdpaper.com-549@2@a.jpg');
+  background-size: cover;
+  background-position: center;
   margin: 0;
   padding: 0;
   position: relative;
 }
 
+/* Vertikale Social Media Bar */
 .social-bar {
   position: absolute;
   left: 20px;
@@ -132,6 +103,10 @@ body {
   gap: 10px;
 }
 
+.social-icons li {
+  font-size: 16px;
+}
+
 .social-icons li a {
   color: #fff;
   text-decoration: none;
@@ -145,7 +120,7 @@ body {
 .text-container {
   text-align: center;
   color: #eaeaea;
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 .text-container h1 {
@@ -159,18 +134,18 @@ body {
   font-size: 2rem;
   font-weight: normal;
   margin-top: 0.5rem;
-  color: #b0b0b0;
+  color: #b0b0b0; 
 }
 
 .animated-text {
-  color: #3498db;
+  color: #3498db; 
   font-weight: bold;
   animation: fade 2s infinite;
 }
 
+/* Keyframes für Animation */
 @keyframes fade {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   50% {
